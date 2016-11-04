@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroudColor"
+    android:statusBarColor="@color/buttonColor"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="edu.shsu.truck_it.MainActivity">
 
     <EditText
@@ -22,14 +25,14 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
         android:layout_width="340dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="216dp"
         app:layout_constraintTop_toTopOf="parent"
         android:hint="Username"
         android:backgroundTint="@color/textColor"
         android:foregroundTint="@color/textColor"
         android:textColor="@color/textColor"
         android:textColorHint="@color/textColor"
-        />
+        app:layout_constraintHorizontal_bias="0.56" />
 
     <EditText
         android:inputType="textPassword"
@@ -50,7 +53,7 @@
         android:textColor="@color/textColor"
         android:textColorHint="@color/textColor"/>
 
-    <TextView
+    <!--<TextView
         android:text="Truck-It"
         android:layout_width="313dp"
         android:layout_height="130dp"
@@ -65,7 +68,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="@color/textColor"/>
+        android:textColor="@color/textColor"/>-->
 
     <Switch
         android:text="Driver?"
@@ -109,4 +112,17 @@
         app:layout_constraintTop_toBottomOf="@+id/editText2"
         android:background="@color/buttonColor"
         android:textColor="@color/textColor"/>
+
+    <ImageView
+        android:layout_width="299dp"
+        android:layout_height="147dp"
+        app:srcCompat="@drawable/truckitwtruck"
+        android:id="@+id/imageView2"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
