@@ -73,7 +73,7 @@
         android:textColorHint="@color/textColor"/>
 
     <Button
-        android:text="Next"
+        android:text="Create Account"
         android:layout_width="340dp"
         android:layout_height="49dp"
         android:id="@+id/button2"
