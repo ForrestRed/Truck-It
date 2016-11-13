@@ -15,7 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".UserSelectionActivity"
+            android:label="@string/title_activity_user_selection"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_user_selection"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroudColor"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="edu.shsu.truck_it.UserSelectionActivity"
+    tools:showIn="@layout/app_bar_user_selection">
+
+
+    <ImageView
+        android:layout_width="155dp"
+        android:layout_height="64dp"
+        app:srcCompat="@drawable/small_truck"
+        android:id="@+id/imageView3"
+        android:layout_marginTop="72dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="36dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:layout_width="188dp"
+        android:layout_height="57dp"
+        app:srcCompat="@drawable/large_truck"
+        android:id="@+id/imageView4"
+        android:layout_marginTop="56dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:layout_width="123dp"
+        android:layout_height="85dp"
+        app:srcCompat="@drawable/cargo_van"
+        android:id="@+id/imageView5"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        android:layout_marginStart="54dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:id="@+id/button3"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="424dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/buttonColor"
+        android:textColor="@color/textColor"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="391dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/radioGroup"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp">
+
+        <RadioButton
+            android:text="Small Truck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="88dp"
+            android:textColor="@color/textColor"
+            android:buttonTint="@color/textColor"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioButton
+            android:text="Large Truck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton2"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="80dp"
+            android:textColor="@color/textColor"
+            android:buttonTint="@color/textColor"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton"
+            android:layout_marginEnd="24dp" />
+
+        <RadioButton
+            android:text="Cargo Van"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton3"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="80dp"
+            android:textColor="@color/textColor"
+            android:buttonTint="@color/textColor"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton2"
+            android:layout_marginEnd="24dp" />
+    </RadioGroup>
+</android.support.constraint.ConstraintLayout>
