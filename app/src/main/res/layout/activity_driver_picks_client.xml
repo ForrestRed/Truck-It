@@ -11,13 +11,6 @@
     tools:context="edu.shsu.truck_it.DriverPicksClientActivity"
     android:background="@color/backgroudColor">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="106dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,4 +21,33 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="12dp"
         android:id="@+id/editText3" />
+
+    <Button
+        android:text="Filter"
+        android:layout_width="@dimen/nav_header_height"
+        android:layout_height="wrap_content"
+        android:id="@+id/button8"
+        android:elevation="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/textColor"
+        android:background="@color/buttonColor" />
+
+    <Button
+        android:text="Current Jobs"
+        android:layout_width="@dimen/nav_header_height"
+        android:layout_height="wrap_content"
+        android:id="@+id/button7"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/textColor"
+        android:background="@color/buttonColor" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/editText3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:layout_above="@+id/button8" />
 </RelativeLayout>

@@ -21,7 +21,7 @@
 
     <Button
         android:text="Rate Driver"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/nav_header_height"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
