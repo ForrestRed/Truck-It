@@ -20,11 +20,12 @@
             android:name=".UserSelectionActivity"
             android:label="@string/title_activity_user_selection"
             android:theme="@style/AppTheme" />
-        <activity android:name=".DriverPicksClientActivity"/>
+        <activity android:name=".DriverPicksClientActivity" />
         <activity
             android:name=".JobDetailsActivity"
             android:label="@string/title_activity_job_details"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".UserRatesDriverActivity"></activity>
     </application>
 
 </manifest>
