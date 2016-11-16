@@ -100,7 +100,6 @@
     <EditText
         android:layout_width="340dp"
         android:layout_height="44dp"
-        android:inputType=""
         android:ems="10"
         android:id="@+id/editText15"
         app:layout_constraintRight_toRightOf="parent"
@@ -111,12 +110,13 @@
         android:textColorHint="@color/textColor"
         android:layout_below="@+id/editText14"
         android:layout_alignStart="@+id/editText14"
-        android:hint="Driver's Licence" />
+        android:hint="Driver's Licence"
+        android:inputType="number" />
 
     <EditText
         android:layout_width="340dp"
         android:layout_height="44dp"
-        android:inputType=""
+        android:inputType="text"
         android:ems="10"
         android:id="@+id/editText16"
         app:layout_constraintRight_toRightOf="parent"
