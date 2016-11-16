@@ -25,7 +25,8 @@
             android:name=".JobDetailsActivity"
             android:label="@string/title_activity_job_details"
             android:theme="@style/AppTheme" />
-        <activity android:name=".UserRatesDriverActivity"></activity>
+        <activity android:name=".UserRatesDriverActivity" />
+        <activity android:name=".DriverRegisterActivity"></activity>
     </application>
 
 </manifest>
