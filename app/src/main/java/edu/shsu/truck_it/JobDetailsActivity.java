@@ -21,6 +21,11 @@ import java.util.Date;
 
 public class JobDetailsActivity extends AppCompatActivity {
 
+    //still ghetto, being worked on
+    private Button Submit_button;
+    private Button To_Maps_Start_button;
+    private Button To_Maps_End_button;
+
     private Button getPic;
     private ImageView Picture;
     private static final int PICK_IMAGE = 100;
@@ -41,6 +46,7 @@ public class JobDetailsActivity extends AppCompatActivity {
                 openGallery();
             }
         });
+
 
     }
 

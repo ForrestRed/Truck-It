@@ -26,7 +26,11 @@
             android:label="@string/title_activity_job_details"
             android:theme="@style/AppTheme" />
         <activity android:name=".UserRatesDriverActivity" />
-        <activity android:name=".DriverRegisterActivity"></activity>
+        <activity android:name=".DriverRegisterActivity" />
+        <activity
+            android:name=".DriverStartJobActivity"
+            android:label="@string/title_activity_driver_start_job"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
