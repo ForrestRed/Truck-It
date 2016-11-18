@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private TextView creatAccount;
     private Switch mySwitch;
+    private EditText userText, passText;
+    private String user = null, pass = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +26,16 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton = (Button) findViewById(R.id.button);
         mySwitch = (Switch) findViewById(R.id.switch2);
+        userText = (EditText) findViewById(R.id.editText);
+        passText = (EditText) findViewById(R.id.editText2);
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                user = userText.getText().toString();
+                pass = passText.getText().toString();
+
                 if(mySwitch.isChecked()){
                     Intent intent = new Intent(getApplicationContext(), DriverPicksClientActivity.class);
                     startActivity(intent);
