@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.content.Intent;
+import android.content.Context;
+import android.widget.Toast;
 
 public class DriverRegisterActivity extends AppCompatActivity {
     private Button createAccount;
@@ -34,6 +36,12 @@ public class DriverRegisterActivity extends AppCompatActivity {
         largeTruck = (RadioButton) findViewById(R.id.radioButton9);
         cargoVan = (RadioButton) findViewById(R.id.radioButton7);
 
+        //making toast
+        Context con = getApplicationContext();
+        CharSequence toastText = "Complete registration fields.";
+        int duration = Toast.LENGTH_SHORT;
+        final Toast toast = Toast.makeText(con, toastText, duration);
+
         createAccount.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 //pull all values from input
@@ -53,6 +61,7 @@ public class DriverRegisterActivity extends AppCompatActivity {
 
                 //make sure there are no null values and that a truck has been selected
                 if(email.equals(null) || password.equals(null) || name.equals(null) || phone.equals(null) || dlNum.equals(null) || insurance.equals(null) || truckType == 0){
+                    toast.show();
 
                 }
                 else{
