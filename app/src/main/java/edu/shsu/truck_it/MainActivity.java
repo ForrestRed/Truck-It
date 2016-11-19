@@ -1,5 +1,6 @@
 package edu.shsu.truck_it;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,20 +31,39 @@ public class MainActivity extends AppCompatActivity {
         userText = (EditText) findViewById(R.id.editText);
         passText = (EditText) findViewById(R.id.editText2);
 
+        //making toast
+        Context con = getApplicationContext();
+        CharSequence toastText = "Complete input fields.";
+        int duration = Toast.LENGTH_SHORT;
+        final Toast toast = Toast.makeText(con, toastText, duration);
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //pull all values from input
                 user = userText.getText().toString();
                 pass = passText.getText().toString();
 
                 if(mySwitch.isChecked()){
-                    Intent intent = new Intent(getApplicationContext(), DriverPicksClientActivity.class);
-                    startActivity(intent);
+                    //Make sure there are no blank entries
+                    if(user.equals("") || pass.equals("")){
+                        toast.show();
+                    }
+                    else{
+                        Intent intent = new Intent(getApplicationContext(), DriverPicksClientActivity.class);
+                        startActivity(intent);
+                    }
                 }
                 else{
-                    Intent intent = new Intent(getApplicationContext(), UserSelectionActivity.class);
-                    startActivity(intent);
+                    //Make sure there are no blank entries
+                    if(user.equals("") || pass.equals("")){
+                        toast.show();
+                    }
+                    else{
+                        Intent intent = new Intent(getApplicationContext(), UserSelectionActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });

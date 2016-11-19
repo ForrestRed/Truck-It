@@ -8,10 +8,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.content.Intent;
 import android.content.Context;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DriverRegisterActivity extends AppCompatActivity {
     private Button createAccount;
+    private TextView alreadyHaveAccount;
     private EditText emailText, passText, nameText, phoneText, dlText, insuranceText;
     private RadioButton smallTruck, largeTruck, cargoVan;
     private String email = null, password = null, name = null, phone = null, dlNum = null, insurance = null;
@@ -24,7 +26,7 @@ public class DriverRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_driver_register);
 
         createAccount = (Button) findViewById(R.id.button9);
-
+        alreadyHaveAccount = (TextView) findViewById(R.id.textView3);
         emailText = (EditText) findViewById(R.id.editText11);
         passText = (EditText) findViewById(R.id.editText12);
         nameText = (EditText) findViewById(R.id.editText13);
@@ -60,7 +62,7 @@ public class DriverRegisterActivity extends AppCompatActivity {
                     truckType = 3;
 
                 //make sure there are no null values and that a truck has been selected
-                if(email.equals(null) || password.equals(null) || name.equals(null) || phone.equals(null) || dlNum.equals(null) || insurance.equals(null) || truckType == 0){
+                if(email.equals("") || password.equals("") || name.equals("") || phone.equals("") || dlNum.equals("") || insurance.equals("") || truckType == 0){
                     toast.show();
 
                 }
@@ -68,6 +70,14 @@ public class DriverRegisterActivity extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
                 }
+            }
+        });
+
+        alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
             }
         });
     }

@@ -1,7 +1,9 @@
 package edu.shsu.truck_it;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -14,24 +16,52 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class UserSelectionActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private RadioButton smallTruck;
+    private RadioButton largeTruck;
+    private RadioButton cargoVan;
+    private int truckType = 0; // 1 for small, 2 for large, 3 for cargo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_selection);
 
+        final RadioButton smallTruck = (RadioButton) findViewById(R.id.sTRadioButton);
+        final RadioButton largeTruck = (RadioButton) findViewById(R.id.lTRadioButton);
+        final RadioButton cargoVan = (RadioButton) findViewById(R.id.cVRadioButton);
+
+        //making toast
+        Context con = getApplicationContext();
+        CharSequence toastText = "Please select a truck.";
+        int duration = Toast.LENGTH_SHORT;
+        final Toast toast = Toast.makeText(con, toastText, duration);
+
         Button nextButton = (Button) findViewById(R.id.button3);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), JobDetailsActivity.class);
-                startActivity(intent1);
+
+                if(smallTruck.isChecked())
+                    truckType = 1;
+                else if(largeTruck.isChecked())
+                    truckType = 2;
+                else if(cargoVan.isChecked())
+                    truckType = 3;
+
+                if(truckType == 0){
+                    toast.show();
+                }
+                else{
+                    Intent intent1 = new Intent(getApplicationContext(), JobDetailsActivity.class);
+                    startActivity(intent1);
+                }
             }
         });
 

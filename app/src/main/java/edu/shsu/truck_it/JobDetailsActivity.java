@@ -1,5 +1,6 @@
 package edu.shsu.truck_it;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,7 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -21,13 +24,17 @@ import java.util.Date;
 
 public class JobDetailsActivity extends AppCompatActivity {
 
-    //still ghetto, being worked on
-    private Button Submit_button;
-    private Button To_Maps_Start_button;
-    private Button To_Maps_End_button;
 
     private Button getPic;
+    private Button submit;
     private ImageView Picture;
+    private EditText pickupLocation;
+    private EditText dropOffLocation;
+    private EditText date;
+    private EditText time;
+    private EditText details;
+
+    private String pickupStr = null, dropOffStr = null, dateStr = null, timeStr = null, detailsStr = null, test =null;
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
     @Override
@@ -37,6 +44,20 @@ public class JobDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //pull all values from input
+        pickupLocation = (EditText) findViewById(R.id.pLEditText);
+        dropOffLocation = (EditText) findViewById(R.id.dOEditText);
+        date = (EditText) findViewById(R.id.dateEditText);
+        time = (EditText) findViewById(R.id.timeEditText);
+        details = (EditText) findViewById(R.id.detailsEditText);
+        submit = (Button) findViewById(R.id.button5);
+
+        //making toast
+        Context con = getApplicationContext();
+        CharSequence toastText = "Complete input fields.";
+        int duration = Toast.LENGTH_SHORT;
+        final Toast toast = Toast.makeText(con, toastText, duration);
+
         getPic = (Button) findViewById(R.id.button4);
         Picture = (ImageView) findViewById(R.id.imageView);
 
@@ -44,6 +65,21 @@ public class JobDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openGallery();
+            }
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickupStr = pickupLocation.getText().toString();
+                dropOffStr = dropOffLocation.getText().toString();
+                dateStr = date.getText().toString();
+                timeStr = time.getText().toString();
+                detailsStr = details.getText().toString();
+
+                //Make sure there are no blank entries
+                if(pickupStr.equals("") || dropOffStr.equals("") || dateStr.equals("") || timeStr.equals("") || detailsStr.equals(""))
+                    toast.show();
             }
         });
 
