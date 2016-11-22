@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    DatabaseHelper myDb;
     private EditText newEmail;
     private EditText newPassword;
     private EditText newName;
@@ -29,6 +30,9 @@ public class RegisterActivity extends AppCompatActivity {
         newPassword = (EditText) findViewById(R.id.newPasswordEditText);
         newName = (EditText) findViewById(R.id.newNameEditText);
         newPhone = (EditText) findViewById(R.id.newPhoneEditText);
+
+        //calls the internal database
+        myDb = new DatabaseHelper(this);
 
         TextView loginText = (TextView) findViewById(R.id.textView);
 
@@ -52,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
                 else{
+                    AddAccount();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
@@ -65,5 +70,19 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void AddAccount() {
+        //convert editText to Integer
+        //Phonenumbers will typically go out of range of an int which causes an error, we need to fix this by changing its type to string in the database
+        String value = newPhone.getText().toString();
+        int textToInt = Integer.parseInt(newPhone.getText().toString());
+        boolean isInserted = myDb.insertAccount(newEmail.getText().toString(), newPassword.getText().toString(),
+                newName.getText().toString(), textToInt);
+
+        if (isInserted = true)
+            Toast.makeText(RegisterActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(RegisterActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 }

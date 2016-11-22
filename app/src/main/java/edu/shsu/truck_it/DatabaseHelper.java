@@ -1,5 +1,6 @@
 package edu.shsu.truck_it;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -24,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DRIVERPASS = "driverPassword";
     public static final String DRIVERPHONE = "driverPhone";
     public static final String DRIVEREMAIL = "driverEmail";
-    public static final String INSURANCE = "driverIns";
+    public static final String INSURANCE = "driversIns";
     public static final String DRIVERLICENSE = "driverLicense";
     public static final String VEHICLE_TYPE = "vehicleType";
     public static final String TRIPID = "tripID";
@@ -34,9 +35,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String CHARGE = "amount";
     public static final String DATE = "date";
     public static final String TIME = "time";
+    public static final String DETAILS = "details";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -44,13 +46,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         db.execSQL("CREATE TABLE "+ TABLE_NAME1 + " (userID INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT, userPhone INTEGER UNIQUE, userEmail TEXT UNIQUE)");
         db.execSQL("CREATE TABLE "+ TABLE_NAME2 + " (driverID INTEGER PRIMARY KEY AUTOINCREMENT, driverName TEXT, driverPassword TEXT, driverPhone INTEGER UNIQUE, driverEmail TEXT UNIQUE, driversIns TEXT, driverLicense TEXT UNIQUE, vehicleType INTEGER)");
-        db.execSQL("CREATE TABLE "+ TABLE_NAME3 + " (tripID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, driverID INTEGER, origin TEXT, destination TEXT, miles DOUBLE, amount DOUBLE, date TEXT, time TEXT)");
+        db.execSQL("CREATE TABLE "+ TABLE_NAME3 + " (tripID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, driverID INTEGER, origin TEXT, destination TEXT, miles DOUBLE, amount DOUBLE, date TEXT, time TEXT, details TEXT)");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXIST "+TABLE_NAME1);
+        //if(newVersion > oldVersion)
+            //db.execSQL("ALTER TABLE trips ADD COLUMN details TEXT");
         onCreate(db);
+    }
+
+    public boolean insertData(Integer userID, Integer driverID, String origin, String destination, String date, String time, String details){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(USERID, userID);
+        contentValues.put(DRIVERID, driverID);
+        contentValues.put(ORIGIN, origin);
+        contentValues.put(DESTINATION, destination);
+        contentValues.put(DATE, date);
+        contentValues.put(TIME, time);
+        contentValues.put(DETAILS, details);
+        long result = db.insert(TABLE_NAME3, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean insertAccount(String email, String password, String name, Integer phoneNumber){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(USERNAME, name);
+        contentValues.put(USERPASS, password);
+        contentValues.put(USEREMAIL, email);
+        contentValues.put(USERPHONE, phoneNumber);
+        long result = db.insert(TABLE_NAME1, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+
+    public boolean insertDriverAccount(String name, String password, Integer phone, String email, String insurance, String license, Integer vehicle){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DRIVEREMAIL, email);
+        contentValues.put(DRIVERPASS, password);
+        contentValues.put(DRIVERNAME, name);
+        contentValues.put(DRIVERPHONE, phone);
+        contentValues.put(DRIVERLICENSE, license);
+        contentValues.put(INSURANCE, insurance);
+        contentValues.put(VEHICLE_TYPE, vehicle);
+        long result = db.insert(TABLE_NAME2, null, contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
     }
   }

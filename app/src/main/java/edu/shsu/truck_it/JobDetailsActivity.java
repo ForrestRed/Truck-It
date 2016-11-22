@@ -24,7 +24,7 @@ import java.util.Date;
 
 public class JobDetailsActivity extends AppCompatActivity {
 
-
+    DatabaseHelper myDb;
     private Button getPic;
     private Button submit;
     private ImageView Picture;
@@ -51,6 +51,9 @@ public class JobDetailsActivity extends AppCompatActivity {
         time = (EditText) findViewById(R.id.timeEditText);
         details = (EditText) findViewById(R.id.detailsEditText);
         submit = (Button) findViewById(R.id.button5);
+
+        //calls the internal database
+        myDb = new DatabaseHelper(this);
 
         //making toast
         Context con = getApplicationContext();
@@ -80,15 +83,28 @@ public class JobDetailsActivity extends AppCompatActivity {
                 //Make sure there are no blank entries
                 if(pickupStr.equals("") || dropOffStr.equals("") || dateStr.equals("") || timeStr.equals("") || detailsStr.equals(""))
                     toast.show();
+                else
+                    AddData();
             }
         });
-
-
     }
 
     private void openGallery(){
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
+    }
+
+    public void AddData() {
+        boolean isInserted = myDb.insertData(1, 2, pickupLocation.getText().toString(),
+                dropOffLocation.getText().toString(),
+                date.getText().toString(),
+                time.getText().toString(),
+                details.getText().toString());
+
+        if(isInserted = true)
+            Toast.makeText(JobDetailsActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(JobDetailsActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 
     @Override

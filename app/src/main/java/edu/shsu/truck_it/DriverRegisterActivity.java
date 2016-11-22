@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class DriverRegisterActivity extends AppCompatActivity {
+    DatabaseHelper myDb;
     private Button createAccount;
     private TextView alreadyHaveAccount;
     private EditText emailText, passText, nameText, phoneText, dlText, insuranceText;
@@ -37,6 +38,9 @@ public class DriverRegisterActivity extends AppCompatActivity {
         smallTruck = (RadioButton) findViewById(R.id.radioButton8);
         largeTruck = (RadioButton) findViewById(R.id.radioButton9);
         cargoVan = (RadioButton) findViewById(R.id.radioButton7);
+
+        //calls the internal database
+        myDb = new DatabaseHelper(this);
 
         //making toast
         Context con = getApplicationContext();
@@ -67,6 +71,7 @@ public class DriverRegisterActivity extends AppCompatActivity {
 
                 }
                 else{
+                    AddDriverAccount();
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
                 }
@@ -80,5 +85,19 @@ public class DriverRegisterActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public void AddDriverAccount() {
+        //convert editText to Integer
+        //Phonenumbers will typically go out of range of an int which causes an error, we need to fix this by changing its type to string in the database
+        int textToInt = Integer.parseInt(phoneText.getText().toString());
+        boolean isInserted = myDb.insertDriverAccount(nameText.getText().toString(), passText.getText().toString(),
+                textToInt, emailText.getText().toString(), insuranceText.getText().toString(),
+                        dlText.getText().toString(), truckType);
+
+        if (isInserted = true)
+            Toast.makeText(DriverRegisterActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(DriverRegisterActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 }
