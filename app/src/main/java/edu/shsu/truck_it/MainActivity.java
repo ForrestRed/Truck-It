@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    //DatabaseHelper myDb; //<--This line creates the database, can comment out but dont delete
+    DatabaseHelper myDb; //<--This line creates the database, can comment out but dont delete
 
     private Button loginButton;
     private TextView creatAccount;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //myDb = new DatabaseHelper(this);<---calls the internal db
+        myDb = new DatabaseHelper(this);//<---calls the internal db
 
         loginButton = (Button) findViewById(R.id.button);
         mySwitch = (Switch) findViewById(R.id.switch2);
