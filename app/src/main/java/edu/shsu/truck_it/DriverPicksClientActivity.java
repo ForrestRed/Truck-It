@@ -1,11 +1,13 @@
 package edu.shsu.truck_it;
 
+import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.view.ViewGroup;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ import java.util.List;
 public class DriverPicksClientActivity extends AppCompatActivity {
 
     private ListView listJobs;
+    DatabaseHelper myDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,9 @@ public class DriverPicksClientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_driver_picks_client);
 
         listJobs = (ListView) findViewById(R.id.listJob);
+        //calls the internal database
+        myDb = new DatabaseHelper(this);
+        populateListView();
         String[] tests = new String[]{
                 "test 1",
                 "TEST 2",
@@ -41,7 +48,16 @@ public class DriverPicksClientActivity extends AppCompatActivity {
             }
 
         };
-        listJobs.setAdapter(arrayAdapter);
+        //listJobs.setAdapter(arrayAdapter);
 
+    }
+
+    private void populateListView(){
+        Cursor cursor = myDb.getAllRows();
+        String[] fromFieldNames = new String[] {DatabaseHelper.ORIGIN, DatabaseHelper.DESTINATION, DatabaseHelper.DETAILS};
+        int[] toViewIDs = new int[] {R.id.origin, R.id.destination, R.id.details};
+        SimpleCursorAdapter myCursorAdaptor;
+        myCursorAdaptor = new SimpleCursorAdapter(getBaseContext(), R.layout.job_listing, cursor, fromFieldNames, toViewIDs, 0);
+        listJobs.setAdapter(myCursorAdaptor);
     }
 }

@@ -150,4 +150,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return b;
     }
+
+    public Cursor getAllRows() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3;
+        String where = null;
+        String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
+        //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);
+        Cursor c = db.rawQuery(query, null);
+
+        if(c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
   }
