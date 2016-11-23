@@ -54,8 +54,20 @@ public class MainActivity extends AppCompatActivity {
                         toast.show();
                     }
                     else{
-                        Intent intent = new Intent(getApplicationContext(), DriverPicksClientActivity.class);
-                        startActivity(intent);
+                        //Test for driver login authentication
+                        String dPassword = myDb.searchDriverPass(user);
+                        if(pass.equals(dPassword))
+                        {
+                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(getApplicationContext(), DriverPicksClientActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+
+                        }
                     }
                 }
                 else{
@@ -64,8 +76,19 @@ public class MainActivity extends AppCompatActivity {
                         toast.show();
                     }
                     else{
-                        Intent intent = new Intent(getApplicationContext(), UserSelectionActivity.class);
-                        startActivity(intent);
+                        //Test for user login authentication
+                        String password = myDb.searchPass(user);
+                        if(pass.equals(password))
+                        {
+                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), UserSelectionActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+
+                        }
                     }
                 }
             }

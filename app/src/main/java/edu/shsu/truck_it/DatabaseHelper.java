@@ -2,6 +2,7 @@ package edu.shsu.truck_it;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -69,6 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(TIME, time);
         contentValues.put(DETAILS, details);
         long result = db.insert(TABLE_NAME3, null, contentValues);
+        db.close();
         if(result == -1)
             return false;
         else
@@ -83,6 +85,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(USEREMAIL, email);
         contentValues.put(USERPHONE, phoneNumber);
         long result = db.insert(TABLE_NAME1, null, contentValues);
+        db.close();
         if(result == -1)
             return false;
         else
@@ -101,9 +104,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(INSURANCE, insurance);
         contentValues.put(VEHICLE_TYPE, vehicle);
         long result = db.insert(TABLE_NAME2, null, contentValues);
+        db.close();
         if(result == -1)
             return false;
         else
             return true;
+    }
+
+    public String searchPass(String uname){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select userEmail, userPassword from "+TABLE_NAME1;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "not found";
+        if(cursor.moveToFirst()){
+            do{
+                a = cursor.getString(0);
+
+                if(a.equals(uname)){
+                    b = cursor.getString(1);
+                    break;
+                }
+            }
+            while(cursor.moveToNext());
+        }
+        return b;
+    }
+
+    public String searchDriverPass(String uname){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select driverEmail, driverPassword from "+TABLE_NAME2;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "not found";
+        if(cursor.moveToFirst()){
+            do{
+                a = cursor.getString(0);
+
+                if(a.equals(uname)){
+                    b = cursor.getString(1);
+                    break;
+                }
+            }
+            while(cursor.moveToNext());
+        }
+        return b;
     }
   }
