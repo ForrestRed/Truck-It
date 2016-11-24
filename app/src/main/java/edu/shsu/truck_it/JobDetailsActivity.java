@@ -85,6 +85,8 @@ public class JobDetailsActivity extends AppCompatActivity {
                     toast.show();
                 else
                     AddData();
+                    Intent intent = new Intent(getApplicationContext(), UserSelectionActivity.class);
+                    startActivity(intent);
             }
         });
     }

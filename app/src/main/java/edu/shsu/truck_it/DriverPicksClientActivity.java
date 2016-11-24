@@ -1,9 +1,11 @@
 package edu.shsu.truck_it;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,6 +21,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
 
     private ListView listJobs;
     DatabaseHelper myDb;
+    public final static String ID_EXTRA = "edu.shsu.truck_it._ID";
 
 
     @Override
@@ -49,6 +52,17 @@ public class DriverPicksClientActivity extends AppCompatActivity {
 
         };
         //listJobs.setAdapter(arrayAdapter);
+
+        //Specifies what happens when an item in listView is clicked.
+        listJobs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), Driver_Requests_Job_Activity.class);
+                intent.putExtra(ID_EXTRA, String.valueOf(id));
+                startActivity(intent);
+
+            }
+        });
 
     }
 

@@ -166,4 +166,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return c;
     }
+
+    public Job getJob(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select tripID as _id, origin, destination, date, time, details from "+TABLE_NAME3+ " where " +TRIPID+ " = " +id;
+        Cursor c2 = db.rawQuery(query, null);
+
+        if(c2 != null) {
+            c2.moveToFirst();
+        }
+        Job job = new Job(c2.getString(1), c2.getString(2), c2.getString(3), c2.getString(4), c2.getString(5));
+        return job;
+    }
   }

@@ -30,7 +30,11 @@
         <activity
             android:name=".DriverStartJobActivity"
             android:label="@string/title_activity_driver_start_job"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Driver_Requests_Job_Activity"
+            android:label="@string/title_activity_driver__requests__job_"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
