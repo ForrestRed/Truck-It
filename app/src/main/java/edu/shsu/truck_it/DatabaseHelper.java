@@ -167,6 +167,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor getUserJobs(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +USERID+ " = " +id;
+        String where = null;
+        String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
+        //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);
+        Cursor c = db.rawQuery(query, null);
+
+        if(c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public int getUserId(String emailAddress){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select userEmail, userID from "+TABLE_NAME1;
+        Cursor c2 = db.rawQuery(query, null);
+
+        String a;
+        int b = -1;
+        if(c2.moveToFirst()){
+            do{
+                a = c2.getString(0);
+
+                if(a.equals(emailAddress)){
+                    b = c2.getInt(1);
+                    break;
+                }
+            }
+            while(c2.moveToNext());
+        }
+        return b;
+    }
+
     public Job getJob(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "select tripID as _id, origin, destination, date, time, details from "+TABLE_NAME3+ " where " +TRIPID+ " = " +id;

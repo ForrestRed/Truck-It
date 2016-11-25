@@ -33,6 +33,8 @@ public class JobDetailsActivity extends AppCompatActivity {
     private EditText date;
     private EditText time;
     private EditText details;
+    String passedVar;
+    private int userID;
 
     private String pickupStr = null, dropOffStr = null, dateStr = null, timeStr = null, detailsStr = null, test =null;
     private static final int PICK_IMAGE = 100;
@@ -51,6 +53,9 @@ public class JobDetailsActivity extends AppCompatActivity {
         time = (EditText) findViewById(R.id.timeEditText);
         details = (EditText) findViewById(R.id.detailsEditText);
         submit = (Button) findViewById(R.id.button5);
+        passedVar = getIntent().getStringExtra(UserSelectionActivity.User_ID_Final_EXTRA);
+        userID = Integer.parseInt(passedVar);
+
 
         //calls the internal database
         myDb = new DatabaseHelper(this);
@@ -97,7 +102,7 @@ public class JobDetailsActivity extends AppCompatActivity {
     }
 
     public void AddData() {
-        boolean isInserted = myDb.insertData(1, 2, pickupLocation.getText().toString(),
+        boolean isInserted = myDb.insertData(userID, 2, pickupLocation.getText().toString(),
                 dropOffLocation.getText().toString(),
                 date.getText().toString(),
                 time.getText().toString(),

@@ -22,10 +22,13 @@ import android.widget.Toast;
 public class UserSelectionActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public final static String User_ID_Final_EXTRA = "edu.shsu.truck_it._ID";
     private RadioButton smallTruck;
     private RadioButton largeTruck;
     private RadioButton cargoVan;
     private int truckType = 0; // 1 for small, 2 for large, 3 for cargo
+    String passedVar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class UserSelectionActivity extends AppCompatActivity
         final RadioButton smallTruck = (RadioButton) findViewById(R.id.sTRadioButton);
         final RadioButton largeTruck = (RadioButton) findViewById(R.id.lTRadioButton);
         final RadioButton cargoVan = (RadioButton) findViewById(R.id.cVRadioButton);
+
+        passedVar = getIntent().getStringExtra(MainActivity.User_ID_EXTRA);
+
 
         //making toast
         Context con = getApplicationContext();
@@ -60,6 +66,7 @@ public class UserSelectionActivity extends AppCompatActivity
                 }
                 else{
                     Intent intent1 = new Intent(getApplicationContext(), JobDetailsActivity.class);
+                    intent1.putExtra(User_ID_Final_EXTRA, passedVar);
                     startActivity(intent1);
                 }
             }
@@ -115,16 +122,25 @@ public class UserSelectionActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Intent i = null;
+
         int id = item.getItemId();
 
         if (id == R.id.nav_jobs) {
-            // Handle the camera action
+            // Handle the myJobs action
+            drawer.closeDrawer(GravityCompat.START);
+            i = new Intent(this, MyJobRequestsActivity.class);
+            i.putExtra(User_ID_Final_EXTRA, passedVar);
+            startActivity(i);
 
         } else if (id == R.id.nav_logout) {
-
+            //Handles the logout action
+            drawer.closeDrawer(GravityCompat.START);
+            i = new Intent(this, LogoutActivity.class);
+            startActivity(i);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

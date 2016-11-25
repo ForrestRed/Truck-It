@@ -15,12 +15,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb; //<--This line creates the database, can comment out but dont delete
-
+    public final static String User_ID_EXTRA = "edu.shsu.truck_it._ID";
     private Button loginButton;
     private TextView creatAccount;
     private Switch mySwitch;
     private EditText userText, passText;
-    private String user = null, pass = null;
+    private String user = null, pass = null, userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                         {
                             Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), UserSelectionActivity.class);
+                            userId = Integer.toString(myDb.getUserId(user));
+                            intent.putExtra(User_ID_EXTRA, userId);
                             startActivity(intent);
                         }
                         else
