@@ -39,7 +39,11 @@
             android:name=".MyJobRequestsActivity"
             android:label="@string/title_activity_my_job_requests"
             android:theme="@style/AppTheme" />
-        <activity android:name=".LogoutActivity"></activity>
+        <activity android:name=".LogoutActivity" />
+        <activity
+            android:name=".AcceptOrDenyDriverActivity"
+            android:label="@string/title_activity_accept_or_deny_driver"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

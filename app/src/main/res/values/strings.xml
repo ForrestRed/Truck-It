@@ -10,4 +10,5 @@
     <string name="title_activity_driver_start_job">DriverStartJobActivity</string>
     <string name="title_activity_driver__requests__job_">Driver_Requests_Job_Activity</string>
     <string name="title_activity_my_job_requests">MyJobRequestsActivity</string>
+    <string name="title_activity_accept_or_deny_driver">AcceptOrDenyDriverActivity</string>
 </resources>

@@ -16,11 +16,13 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb; //<--This line creates the database, can comment out but dont delete
     public final static String User_ID_EXTRA = "edu.shsu.truck_it._ID";
+    public final static String Driver_ID_EXTRA = "edu.shsu.truck_it._ID2";
+
     private Button loginButton;
     private TextView creatAccount;
     private Switch mySwitch;
     private EditText userText, passText;
-    private String user = null, pass = null, userId;
+    private String user = null, pass = null, userId, driverId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
                         if(pass.equals(dPassword))
                         {
                             Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-
                             Intent intent = new Intent(getApplicationContext(), DriverPicksClientActivity.class);
+                            driverId = Integer.toString(myDb.getDriverId(user));
+                            intent.putExtra(Driver_ID_EXTRA, driverId);
                             startActivity(intent);
                         }
                         else

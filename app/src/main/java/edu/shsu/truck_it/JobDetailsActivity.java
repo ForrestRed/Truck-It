@@ -102,11 +102,11 @@ public class JobDetailsActivity extends AppCompatActivity {
     }
 
     public void AddData() {
-        boolean isInserted = myDb.insertData(userID, 2, pickupLocation.getText().toString(),
+        boolean isInserted = myDb.insertData(userID, 0, pickupLocation.getText().toString(),
                 dropOffLocation.getText().toString(),
                 date.getText().toString(),
                 time.getText().toString(),
-                details.getText().toString());
+                details.getText().toString(), 0, 0);
 
         if(isInserted = true)
             Toast.makeText(JobDetailsActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();

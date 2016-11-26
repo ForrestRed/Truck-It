@@ -1,5 +1,6 @@
 package edu.shsu.truck_it;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,10 +8,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class MyJobRequestsActivity extends AppCompatActivity {
+    public final static String Trip_ID_EXTRA = "edu.shsu.truck_it._ID3";
     private ListView myJobsListView;
     String passedVar;
     DatabaseHelper myDb;
@@ -30,6 +33,14 @@ public class MyJobRequestsActivity extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
         populateListView();
 
+        myJobsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), AcceptOrDenyDriverActivity.class);
+                intent.putExtra(Trip_ID_EXTRA, String.valueOf(id));
+                startActivity(intent);
+            }
+        });
 
     }
 

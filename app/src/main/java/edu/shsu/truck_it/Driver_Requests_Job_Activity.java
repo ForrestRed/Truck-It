@@ -9,11 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Driver_Requests_Job_Activity extends AppCompatActivity {
 
     private Button requestJob;
-    String passedVar = null;
+    String passedVar = null, passedVar2 = null;
     private int passedID;
     private TextView pickupView, dropoffView, dateView, timeView, detailsView;
     DatabaseHelper myDb;
@@ -28,6 +29,8 @@ public class Driver_Requests_Job_Activity extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
         //get passed id of job from driver listView
         passedVar = getIntent().getStringExtra(DriverPicksClientActivity.ID_EXTRA);
+        passedVar2 = getIntent().getStringExtra(DriverPicksClientActivity.Driver_ID_EXTRA);
+
         //assign to textView
         //passedView.setText(passedVar);
 
@@ -51,10 +54,20 @@ public class Driver_Requests_Job_Activity extends AppCompatActivity {
         requestJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ApplyForJob();
                 Intent intent = new Intent(getApplicationContext(), DriverPicksClientActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    public void ApplyForJob() {
+        boolean isInserted = myDb.applyForJob(Integer.parseInt(passedVar2), passedVar);
+
+        if(isInserted = true)
+            Toast.makeText(Driver_Requests_Job_Activity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(Driver_Requests_Job_Activity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 
 }

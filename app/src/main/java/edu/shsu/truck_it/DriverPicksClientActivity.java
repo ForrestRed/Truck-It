@@ -22,6 +22,8 @@ public class DriverPicksClientActivity extends AppCompatActivity {
     private ListView listJobs;
     DatabaseHelper myDb;
     public final static String ID_EXTRA = "edu.shsu.truck_it._ID";
+    public final static String Driver_ID_EXTRA = "edu.shsu.truck_it._ID2";
+    String passedVar = null;
 
 
     @Override
@@ -33,6 +35,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
         //calls the internal database
         myDb = new DatabaseHelper(this);
         populateListView();
+        passedVar = getIntent().getStringExtra(MainActivity.Driver_ID_EXTRA);
         String[] tests = new String[]{
                 "test 1",
                 "TEST 2",
@@ -59,6 +62,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), Driver_Requests_Job_Activity.class);
                 intent.putExtra(ID_EXTRA, String.valueOf(id));
+                intent.putExtra(Driver_ID_EXTRA, passedVar);
                 startActivity(intent);
 
             }
