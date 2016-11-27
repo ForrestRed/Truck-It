@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public final static String Driver_ID_EXTRA = "edu.shsu.truck_it._ID2";
 
     private Button loginButton;
-    private TextView creatAccount;
+    private TextView createAccount;
     private Switch mySwitch;
     private EditText userText, passText;
     private String user = null, pass = null, userId, driverId;
@@ -99,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        creatAccount = (TextView) findViewById(R.id.textView2);
+        createAccount = (TextView) findViewById(R.id.textView2);
 
-        creatAccount.setOnClickListener(new View.OnClickListener() {
+        createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mySwitch.isChecked()){
@@ -109,8 +109,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
+
                     Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                     startActivity(intent);
+
+                    //These lines of code are for testing the maps only
+                    //Intent intent = new Intent(getApplicationContext(), TestMapsActivity.class);
+                    //startActivity(intent);
                 }
 
             }
