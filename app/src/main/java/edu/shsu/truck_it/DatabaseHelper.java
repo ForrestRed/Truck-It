@@ -289,4 +289,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Driver driver = new Driver(c3.getString(1), c3.getInt(2), c3.getInt(3), 4);
         return driver;
     }
+
+    public Trip getTrip (int tID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select tripID as _id, origin, destination from "+TABLE_NAME3+ " where " +TRIPID+ " = " +tID;
+        Cursor c4 = db.rawQuery(query, null);
+
+
+        if(c4 != null) {
+            c4.moveToFirst();
+        }
+        Trip trip = new Trip(c4.getString(1), c4.getString(2));
+        return trip;
+    }
   }
