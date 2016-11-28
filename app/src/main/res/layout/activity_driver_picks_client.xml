@@ -12,17 +12,6 @@
     android:background="@color/backgroudColor">
 
     <Button
-        android:text="Filter"
-        android:layout_width="@dimen/nav_header_height"
-        android:layout_height="wrap_content"
-        android:id="@+id/button8"
-        android:elevation="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="@color/textColor"
-        android:background="@color/buttonColor" />
-
-    <Button
         android:text="Accepted Jobs"
         android:layout_width="@dimen/nav_header_height"
         android:layout_height="wrap_content"

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myDb = new DatabaseHelper(this);//<---calls the internal db
+        myDb = new DatabaseHelper(this); //<---calls the internal db
 
         loginButton = (Button) findViewById(R.id.button);
         mySwitch = (Switch) findViewById(R.id.switch2);
