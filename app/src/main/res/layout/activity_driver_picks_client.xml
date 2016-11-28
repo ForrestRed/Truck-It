@@ -23,10 +23,10 @@
         android:background="@color/buttonColor" />
 
     <Button
-        android:text="Current Jobs"
+        android:text="Accepted Jobs"
         android:layout_width="@dimen/nav_header_height"
         android:layout_height="wrap_content"
-        android:id="@+id/button7"
+        android:id="@+id/acceptedJobsBtn"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:textColor="@color/textColor"

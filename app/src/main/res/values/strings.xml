@@ -12,4 +12,5 @@
     <string name="title_activity_my_job_requests">MyJobRequestsActivity</string>
     <string name="title_activity_accept_or_deny_driver">AcceptOrDenyDriverActivity</string>
     <string name="title_activity_test_maps">Map</string>
+    <string name="title_activity_driver_ready_jobs">DriverReadyJobsActivity</string>
 </resources>

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
     public final static String ID_EXTRA = "edu.shsu.truck_it._ID";
     public final static String Driver_ID_EXTRA = "edu.shsu.truck_it._ID2";
     String passedVar = null;
+    private Button acceptedJobsButton;
 
 
     @Override
@@ -32,6 +34,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_driver_picks_client);
 
         listJobs = (ListView) findViewById(R.id.listJob);
+        acceptedJobsButton = (Button) findViewById(R.id.acceptedJobsBtn);
         //calls the internal database
         myDb = new DatabaseHelper(this);
         populateListView();
@@ -65,6 +68,14 @@ public class DriverPicksClientActivity extends AppCompatActivity {
                 intent.putExtra(Driver_ID_EXTRA, passedVar);
                 startActivity(intent);
 
+            }
+        });
+
+        acceptedJobsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DriverReadyJobsActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -135,6 +135,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public boolean acceptDriver(String tripID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int accepted = 2;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(JOBPENDING, accepted);
+        long result = db.update(TABLE_NAME3, contentValues, "tripID = " +tripID, null);
+        db.close();
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
     public String searchPass(String uname){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "select userEmail, userPassword from "+TABLE_NAME1;
@@ -177,7 +190,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllRows() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3;
+        int notRequested = 0;
+        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +JOBPENDING+ " = " +notRequested;
         String where = null;
         String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
         //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);
@@ -192,6 +206,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getUserJobs(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +USERID+ " = " +id;
+        String where = null;
+        String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
+        //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);
+        Cursor c = db.rawQuery(query, null);
+
+        if(c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+
+    public Cursor getDriverReadyJobs(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int driverReady = 2;
+        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +DRIVERID+ " = " +id+ " and " +JOBPENDING+ " = " +driverReady;
         String where = null;
         String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
         //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);
@@ -283,8 +312,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "select driverID as _id, driverName, vehicleType, driverPhone from "+TABLE_NAME2+ " where " +DRIVERID+ " = " +dID;
         Cursor c3 = db.rawQuery(query, null);
 
-        if(c3 != null) {
+        if(c3 != null && c3.getCount()>0) {
             c3.moveToFirst();
+        }
+        else{
+            Driver noDriver = new Driver("No Driver Requests", 0, 0, 0);
+            return noDriver;
         }
         Driver driver = new Driver(c3.getString(1), c3.getInt(2), c3.getInt(3), 4);
         return driver;
