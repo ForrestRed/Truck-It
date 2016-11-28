@@ -76,9 +76,9 @@ public class RegisterActivity extends AppCompatActivity {
         //convert editText to Integer
         //Phonenumbers will typically go out of range of an int which causes an error, we need to fix this by changing its type to string in the database
         String value = newPhone.getText().toString();
-        int textToInt = Integer.parseInt(newPhone.getText().toString());
+        //int textToInt = Integer.parseInt(newPhone.getText().toString());<--Do not reinstate
         boolean isInserted = myDb.insertAccount(newEmail.getText().toString(), newPassword.getText().toString(),
-                newName.getText().toString(), textToInt);
+                newName.getText().toString(), newPhone.getText().toString());
 
         if (isInserted = true)
             Toast.makeText(RegisterActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();

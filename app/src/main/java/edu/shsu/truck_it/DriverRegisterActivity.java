@@ -90,9 +90,9 @@ public class DriverRegisterActivity extends AppCompatActivity {
     public void AddDriverAccount() {
         //convert editText to Integer
         //Phonenumbers will typically go out of range of an int which causes an error, we need to fix this by changing its type to string in the database
-        int textToInt = Integer.parseInt(phoneText.getText().toString());
+        //int textToInt = Integer.parseInt(phoneText.getText().toString());<--Do not reinstate
         boolean isInserted = myDb.insertDriverAccount(nameText.getText().toString(), passText.getText().toString(),
-                textToInt, emailText.getText().toString(), insuranceText.getText().toString(),
+                phoneText.getText().toString(), emailText.getText().toString(), insuranceText.getText().toString(),
                         dlText.getText().toString(), truckType);
 
         if (isInserted = true)

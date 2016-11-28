@@ -47,8 +47,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        db.execSQL("CREATE TABLE "+ TABLE_NAME1 + " (userID INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT, userPhone INTEGER UNIQUE, userEmail TEXT UNIQUE)");
-        db.execSQL("CREATE TABLE "+ TABLE_NAME2 + " (driverID INTEGER PRIMARY KEY AUTOINCREMENT, driverName TEXT, driverPassword TEXT, driverPhone INTEGER UNIQUE, driverEmail TEXT UNIQUE, driversIns TEXT, driverLicense TEXT UNIQUE, vehicleType INTEGER)");
+        db.execSQL("CREATE TABLE "+ TABLE_NAME1 + " (userID INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT, userPhone TEXT UNIQUE, userEmail TEXT UNIQUE)");
+        db.execSQL("CREATE TABLE "+ TABLE_NAME2 + " (driverID INTEGER PRIMARY KEY AUTOINCREMENT, driverName TEXT, driverPassword TEXT, driverPhone TEXT UNIQUE, driverEmail TEXT UNIQUE, driversIns TEXT, driverLicense TEXT UNIQUE, vehicleType INTEGER)");
         db.execSQL("CREATE TABLE "+ TABLE_NAME3 + " (tripID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, driverID INTEGER, origin TEXT, destination TEXT, miles DOUBLE, amount DOUBLE, date TEXT, time TEXT, details TEXT, jobPending INTEGER, status INTEGER)");
 
     }
@@ -87,7 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertAccount(String email, String password, String name, Integer phoneNumber){
+    public boolean insertAccount(String email, String password, String name, String phoneNumber){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(USERNAME, name);
@@ -103,7 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertDriverAccount(String name, String password, Integer phone, String email, String insurance, String license, Integer vehicle){
+    public boolean insertDriverAccount(String name, String password, String phone, String email, String insurance, String license, Integer vehicle){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DRIVEREMAIL, email);
