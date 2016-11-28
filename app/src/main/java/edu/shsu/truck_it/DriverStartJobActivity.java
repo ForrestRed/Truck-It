@@ -1,5 +1,6 @@
 package edu.shsu.truck_it;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,8 @@ public class DriverStartJobActivity extends AppCompatActivity {
     DatabaseHelper myDb;
     private TextView pickup, dropoff, details;
 
+    public final static String tripIDExtra = "edu.shsu.truck_it._ID3";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,30 @@ public class DriverStartJobActivity extends AppCompatActivity {
         pickup.setText(job._origin);
         dropoff.setText(job._destination);
         details.setText(job._details);
+
+        To_Maps_Start_button = (Button) findViewById(R.id.toPickupMapButton);
+        To_Maps_End_button = (Button) findViewById(R.id.toDropoffMapButton);
+
+        To_Maps_Start_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(getApplicationContext(), TestMapsActivity.class);
+                i.putExtra(tripIDExtra, passedVar);
+                startActivity(i);
+            }
+
+        }
+        );
+        To_Maps_End_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(getApplicationContext(), TestMapsActivity.class);
+                i.putExtra(tripIDExtra, passedVar);
+                startActivity(i);
+            }
+
+        }
+        );
     }
 
 }

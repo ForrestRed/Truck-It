@@ -335,7 +335,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Trip trip = new Trip(c4.getString(1), c4.getString(2));
         return trip;
     }
-    public boolean updateDistance(String tripID, double distance){
+    public boolean updateDistance(String tripID, String distance){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DISTANCE, distance);

@@ -36,9 +36,11 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
     private List<Polyline> polylinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
     DatabaseHelper myDB;
+    String getTripId;
+    int intTripId;
 
     //this tripID needs to be passed from the activity preceding it
-    int tripID = 1;
+    //int tripID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +51,23 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         myDB = new DatabaseHelper(this);
+        getTripId = getIntent().getStringExtra(DriverStartJobActivity.tripIDExtra);
+        intTripId = Integer.parseInt(getTripId);
+
         sendRequest();
 
 
 
     }
     public void sendRequest(){
+
         //here to get trip object which contains origin and destination data
-        Trip t = myDB.getTrip(tripID);
+        Trip t = myDB.getTrip(intTripId);
         //String testOrigin = "11th St Huntsville, TX 77320";
         //String testDestination = "Sam Houston Ave Huntsville, TX 77320";
         String testOrigin = t._origin;
         String testDestination = t._destination;
+
 
 
         try{
@@ -78,7 +85,7 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
         // Add a marker in Sydney and move the camera
         //String testOrigin = "11th St Huntsville, TX 77320";
         //String testDestination = "Sam Houston Ave Huntsville, TX 77320";
-        Trip t = myDB.getTrip(tripID);
+        Trip t = myDB.getTrip(intTripId);
         String testOrigin = t._origin;
         String testDestination = t._destination;
 
@@ -128,10 +135,16 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
         originMarkers = new ArrayList<>();
         destinationMarkers = new ArrayList<>();
 
+
+
         for (Route route : routes) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 16));
-            //distance with route.distance.text same with duration
-            //Toast.makeText(TestMapsActivity.this, "distance: " + route.distance.text, Toast.LENGTH_LONG);
+
+            //attempt at updating table with distance
+
+            myDB.updateDistance(getTripId, route.distance.text);
+
+
 
             ((TextView) findViewById(R.id.tvDuration)).setText(route.duration.text);
             ((TextView) findViewById(R.id.tvDistance)).setText(route.distance.text);
