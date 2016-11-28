@@ -335,4 +335,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Trip trip = new Trip(c4.getString(1), c4.getString(2));
         return trip;
     }
+    public boolean updateDistance(String tripID, double distance){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DISTANCE, distance);
+        long result = db.update(TABLE_NAME3, contentValues, "tripID = " +tripID, null);
+        db.close();
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
   }

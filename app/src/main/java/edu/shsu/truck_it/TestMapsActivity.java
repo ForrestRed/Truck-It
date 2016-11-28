@@ -35,6 +35,10 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
     private List<Marker> destinationMarkers = new ArrayList<>();
     private List<Polyline> polylinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
+    DatabaseHelper myDB;
+
+    //this tripID needs to be passed from the activity preceding it
+    int tripID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +48,19 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        myDB = new DatabaseHelper(this);
         sendRequest();
 
 
 
     }
     public void sendRequest(){
-        String testOrigin = "11th St Huntsville, TX 77320";
-        String testDestination = "Sam Houston Ave Huntsville, TX 77320";
+        //here to get trip object which contains origin and destination data
+        Trip t = myDB.getTrip(tripID);
+        //String testOrigin = "11th St Huntsville, TX 77320";
+        //String testDestination = "Sam Houston Ave Huntsville, TX 77320";
+        String testOrigin = t._origin;
+        String testDestination = t._destination;
 
 
         try{
@@ -67,15 +76,17 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        String testOrigin = "11th St Huntsville, TX 77320";
-
-        String testDestination = "Sam Houston Ave Huntsville, TX 77320";
+        //String testOrigin = "11th St Huntsville, TX 77320";
+        //String testDestination = "Sam Houston Ave Huntsville, TX 77320";
+        Trip t = myDB.getTrip(tripID);
+        String testOrigin = t._origin;
+        String testDestination = t._destination;
 
 
         LatLng origin = getLocationFromAddress(testOrigin);
         LatLng destination = getLocationFromAddress(testDestination);
 
-        originMarkers.add(mMap.addMarker(new MarkerOptions().title("origin").position(origin)));
+        originMarkers.add(mMap.addMarker(new MarkerOptions().title(testOrigin).position(origin)));
 
         //mMap.addMarker(new MarkerOptions().position(origin).title("origin"));
         //mMap.addMarker(new MarkerOptions().position(destination).title("destination"));
@@ -124,7 +135,6 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
 
             ((TextView) findViewById(R.id.tvDuration)).setText(route.duration.text);
             ((TextView) findViewById(R.id.tvDistance)).setText(route.distance.text);
-            Toast.makeText(TestMapsActivity.this, "distance: " + route.distance.text, Toast.LENGTH_LONG);
 
             originMarkers.add(mMap.addMarker(new MarkerOptions()
 
@@ -173,4 +183,5 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
         return p1;
 
     }
+
 }
