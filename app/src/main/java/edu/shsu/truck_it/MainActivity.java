@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                             userId = Integer.toString(myDb.getUserId(user));
                             intent.putExtra(User_ID_EXTRA, userId);
                             startActivity(intent);
+                            finish();
                         }
                         else
                         {
