@@ -71,6 +71,10 @@
         <activity
             android:name=".DriverReadyJobsActivity"
             android:label="@string/title_activity_driver_ready_jobs"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PaymentActivity"
+            android:label="@string/title_activity_payment"
             android:theme="@style/AppTheme"></activity>
     </application>
 

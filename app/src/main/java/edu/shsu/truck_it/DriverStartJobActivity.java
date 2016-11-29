@@ -33,6 +33,7 @@ public class DriverStartJobActivity extends AppCompatActivity {
         pickup = (TextView) findViewById(R.id.startJobPickup);
         dropoff = (TextView) findViewById(R.id.startJobDropOff);
         details = (TextView) findViewById(R.id.startJobDetails);
+        Submit_button = (Button) findViewById(R.id.CurrentJobFinishedButton);
 
         passedVar = getIntent().getStringExtra(DriverReadyJobsActivity.Trip_ID_EXTRA);
         Job job = myDb.getJob(Integer.parseInt(passedVar));
@@ -64,6 +65,15 @@ public class DriverStartJobActivity extends AppCompatActivity {
 
         }
         );
+
+        Submit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), PaymentActivity.class);
+                intent.putExtra(tripIDExtra, passedVar);
+                startActivity(intent);
+            }
+        });
     }
 
 }

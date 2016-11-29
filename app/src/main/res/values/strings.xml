@@ -13,4 +13,5 @@
     <string name="title_activity_accept_or_deny_driver">AcceptOrDenyDriverActivity</string>
     <string name="title_activity_test_maps">Map</string>
     <string name="title_activity_driver_ready_jobs">DriverReadyJobsActivity</string>
+    <string name="title_activity_payment">PaymentActivity</string>
 </resources>

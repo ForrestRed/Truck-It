@@ -8,6 +8,7 @@ public class Trip {
     String _origin;
     String _destination;
 
+
     public Trip (String origin, String destination){
         this._origin = origin;
         this._destination = destination;
