@@ -34,6 +34,8 @@ public class JobDetailsActivity extends AppCompatActivity {
     private EditText time;
     private EditText details;
     String passedVar;
+    String passedTruckVar;
+    int driverTruck;
     private int userID;
 
     private String pickupStr = null, dropOffStr = null, dateStr = null, timeStr = null, detailsStr = null, test =null;
@@ -54,6 +56,8 @@ public class JobDetailsActivity extends AppCompatActivity {
         details = (EditText) findViewById(R.id.detailsEditText);
         submit = (Button) findViewById(R.id.button5);
         passedVar = getIntent().getStringExtra(UserSelectionActivity.User_ID_Final_EXTRA);
+        passedTruckVar = getIntent().getStringExtra(UserSelectionActivity.User_Truck_EXTRA);
+        driverTruck = Integer.parseInt(passedTruckVar);
         userID = Integer.parseInt(passedVar);
 
 
@@ -106,7 +110,7 @@ public class JobDetailsActivity extends AppCompatActivity {
                 dropOffLocation.getText().toString(),
                 date.getText().toString(),
                 time.getText().toString(),
-                details.getText().toString(), 0, 0);
+                details.getText().toString(), 0, 0, driverTruck);
 
         if(isInserted = true)
             Toast.makeText(JobDetailsActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();

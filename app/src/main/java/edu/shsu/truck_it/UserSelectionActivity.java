@@ -23,6 +23,8 @@ public class UserSelectionActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public final static String User_ID_Final_EXTRA = "edu.shsu.truck_it._ID";
+    public final static String User_Truck_EXTRA = "edu.shsu.truck_it._ID5";
+
     private RadioButton smallTruck;
     private RadioButton largeTruck;
     private RadioButton cargoVan;
@@ -67,6 +69,7 @@ public class UserSelectionActivity extends AppCompatActivity
                 else{
                     Intent intent1 = new Intent(getApplicationContext(), JobDetailsActivity.class);
                     intent1.putExtra(User_ID_Final_EXTRA, passedVar);
+                    intent1.putExtra(User_Truck_EXTRA, Integer.toString(truckType));
                     startActivity(intent1);
                 }
             }

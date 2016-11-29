@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String STATUS = "status";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 5);
         SQLiteDatabase db = this.getWritableDatabase();
     }
 
@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         db.execSQL("CREATE TABLE "+ TABLE_NAME1 + " (userID INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, userPassword TEXT, userPhone TEXT UNIQUE, userEmail TEXT UNIQUE)");
         db.execSQL("CREATE TABLE "+ TABLE_NAME2 + " (driverID INTEGER PRIMARY KEY AUTOINCREMENT, driverName TEXT, driverPassword TEXT, driverPhone TEXT UNIQUE, driverEmail TEXT UNIQUE, driversIns TEXT, driverLicense TEXT UNIQUE, vehicleType INTEGER)");
-        db.execSQL("CREATE TABLE "+ TABLE_NAME3 + " (tripID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, driverID INTEGER, origin TEXT, destination TEXT, miles DOUBLE, amount DOUBLE, date TEXT, time TEXT, details TEXT, jobPending INTEGER, status INTEGER)");
+        db.execSQL("CREATE TABLE "+ TABLE_NAME3 + " (tripID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, driverID INTEGER, origin TEXT, destination TEXT, miles DOUBLE, amount DOUBLE, date TEXT, time TEXT, details TEXT, jobPending INTEGER, status INTEGER, vehicleType INTEGER)");
 
     }
 
@@ -64,10 +64,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             //db.execSQL("ALTER TABLE trips ADD COLUMN jobPending INTEGER");
         //if(newVersion > oldVersion)
             //db.execSQL("ALTER TABLE trips ADD COLUMN status INTEGER");
+        //if(newVersion > oldVersion)
+            //db.execSQL("ALTER TABLE trips ADD COLUMN vehicleType INTEGER");
         onCreate(db);
     }
 
-    public boolean insertData(Integer userID, Integer driverID, String origin, String destination, String date, String time, String details, int jobPending, int status){
+    public boolean insertData(Integer userID, Integer driverID, String origin, String destination, String date, String time, String details, int jobPending, int status, int truckType){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(USERID, userID);
@@ -79,6 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(DETAILS, details);
         contentValues.put(JOBPENDING, jobPending);
         contentValues.put(STATUS, status);
+        contentValues.put(VEHICLE_TYPE, truckType);
         long result = db.insert(TABLE_NAME3, null, contentValues);
         db.close();
         if(result == -1)
@@ -305,6 +308,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         Job job = new Job(c2.getString(1), c2.getString(2), c2.getString(3), c2.getString(4), c2.getString(5));
         return job;
+    }
+
+    public CompletedJob getCompletedJob(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select tripID as _id, origin, destination, date, time, details, vehicleType, miles, userID, driverID from "+TABLE_NAME3+ " where " +TRIPID+ " = " +id;
+        Cursor c2 = db.rawQuery(query, null);
+
+        if(c2 != null) {
+            c2.moveToFirst();
+        }
+        CompletedJob compJob = new CompletedJob(c2.getString(1), c2.getString(2), c2.getString(3), c2.getString(4), c2.getString(5), c2.getInt(6), c2.getDouble(7), c2.getInt(8), c2.getInt(9));
+        return compJob;
     }
 
     public Driver getDriver (int dID){

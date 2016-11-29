@@ -6,10 +6,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 public class PaymentActivity extends AppCompatActivity {
 
     String passedVar;
+    DatabaseHelper myDb;
+    private int passedTripID;
+    private double jobFinalCharge;
+    private TextView driverName, vehicleType, distanceTraveled, totalCharge;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,25 +24,43 @@ public class PaymentActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        myDb = new DatabaseHelper(this);
         passedVar = getIntent().getStringExtra(DriverStartJobActivity.tripIDExtra);
+        passedTripID = Integer.parseInt(passedVar);
+
+        CompletedJob finishedJob = myDb.getCompletedJob(passedTripID);
+        Driver finishedDriver = myDb.getDriver(finishedJob._driverID);
+
+        jobFinalCharge = Payment(finishedJob._distance, finishedJob._vehicleType);
+
+        driverName = (TextView) findViewById(R.id.payDriverName);
+        vehicleType = (TextView) findViewById(R.id.payVehicle);
+        distanceTraveled = (TextView) findViewById(R.id.payDistance);
+        totalCharge = (TextView) findViewById(R.id.payCharge);
+
+        driverName.setText(finishedDriver._name);
+        vehicleType.setText(finishedJob._vehicleType);
+        distanceTraveled.setText(String.valueOf(finishedJob._distance));
+        totalCharge.setText(String.valueOf(jobFinalCharge));
+
     }
 
-    public float Payment(float distance, int truckType){
+    public double Payment(double distance, int truckType){
         switch (truckType) {
             case (1):
-                float stc = (float) 0.65;              //small truck charge
-                float charge1 = 5+ (stc * distance);
+                double stc = 0.65;              //small truck charge
+                double charge1 = 5+ (stc * distance);
                 return charge1;
             case (2):
-                float ltc = (float) .79;              // large truck charge
-                float charge2 = 5 +(ltc * distance);
+                double ltc = .79;              // large truck charge
+                double charge2 = 5 +(ltc * distance);
                 return charge2;
             case (3):
-                float cvc = (float) 0.85;          //cargo van charge
-                float charge3 = 6 + (cvc * distance);
+                double cvc = 0.85;          //cargo van charge
+                double charge3 = 6 + (cvc * distance);
                 return charge3;
         }
-        float oranges = (float) 0;                  // so the code works... completely arbitrary and not needed.
+        double oranges = 0;                  // so the code works... completely arbitrary and not needed.
         return oranges;                             // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
 
