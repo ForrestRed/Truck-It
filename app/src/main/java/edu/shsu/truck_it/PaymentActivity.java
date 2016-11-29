@@ -39,7 +39,7 @@ public class PaymentActivity extends AppCompatActivity {
         totalCharge = (TextView) findViewById(R.id.payCharge);
 
         driverName.setText(finishedDriver._name);
-        vehicleType.setText(finishedJob._vehicleType);
+        vehicleType.setText(Integer.toString(finishedJob._vehicleType));
         distanceTraveled.setText(String.valueOf(finishedJob._distance));
         totalCharge.setText(String.valueOf(jobFinalCharge));
 
