@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.List;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb; //<--This line creates the database, can comment out but dont delete
@@ -109,13 +111,41 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else{
-
+                    //Actual code///////////////////////////////////////////////////////////////////
                     Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                     startActivity(intent);
+                    ////////////////////////////////////////////////////////////////////////////////
 
-                    //These lines of code are for testing the maps only
+                    ////////////////////////////////////////////////////////////////////////////////
+                    //These lines of code test email function///////////////////////////////////////
+
+
+                    /*Log.i("SendMailActivity", "Send Button Clicked.");
+
+                    String fromEmail = "teamharambeshsu@gmail.com";
+                    String fromPassword = "Burris4317";
+                    String toEmails = "stovalljr@gmail.com";
+
+                    List toEmailList = Arrays.asList(toEmails
+                            .split("\\s*,\\s*"));
+                    Log.i("SendMailActivity", "To List: " + toEmailList);
+
+                    String emailSubject = "donotreply harambe project test";
+                    String emailBody = "testing, testing, 123, test";
+                    new SendMailTask(MainActivity.this).execute(fromEmail,
+                            fromPassword, toEmailList, emailSubject, emailBody);
+
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(i);*/
+                    ////////////////////////////////////////////////////////////////////////////////
+
+
+                    ////////////////////////////////////////////////////////////////////////////////
+
+                    //These lines of code are for testing the maps only/////////////////////////////
                     //Intent intent = new Intent(getApplicationContext(), TestMapsActivity.class);
                     //startActivity(intent);
+                    ////////////////////////////////////////////////////////////////////////////////
                 }
 
             }
