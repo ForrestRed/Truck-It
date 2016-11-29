@@ -137,7 +137,15 @@ public class UserSelectionActivity extends AppCompatActivity
             i.putExtra(User_ID_Final_EXTRA, passedVar);
             startActivity(i);
 
-        } else if (id == R.id.nav_logout) {
+        }
+        else if (id == R.id.nav_completed){
+            //goes to completed jobs list
+            drawer.closeDrawer(GravityCompat.START);
+            i = new Intent(this, UsersCompletedJobListActivity.class);
+            i.putExtra(User_ID_Final_EXTRA, passedVar);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_logout) {
             //Handles the logout action
             drawer.closeDrawer(GravityCompat.START);
             i = new Intent(this, LogoutActivity.class);

@@ -6,7 +6,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -15,6 +17,7 @@ public class PaymentActivity extends AppCompatActivity {
     private int passedTripID;
     private double jobFinalCharge;
     private TextView driverName, vehicleType, distanceTraveled, totalCharge;
+    private Button chargeUser;
 
 
     @Override
@@ -37,11 +40,20 @@ public class PaymentActivity extends AppCompatActivity {
         vehicleType = (TextView) findViewById(R.id.payVehicle);
         distanceTraveled = (TextView) findViewById(R.id.payDistance);
         totalCharge = (TextView) findViewById(R.id.payCharge);
+        chargeUser = (Button) findViewById(R.id.button7);
 
         driverName.setText(finishedDriver._name);
         vehicleType.setText(Integer.toString(finishedJob._vehicleType));
         distanceTraveled.setText(String.valueOf(finishedJob._distance));
         totalCharge.setText(String.valueOf(jobFinalCharge));
+
+        chargeUser.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                myDb.updateCompletedStatus(passedTripID);
+                Toast.makeText(PaymentActivity.this, "Customer is being charged.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

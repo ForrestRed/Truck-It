@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:textColor="@color/textColor"/>
+        android:textColor="@color/textColor"
+        android:id="@+id/completedLV" />
 
 </android.support.constraint.ConstraintLayout>

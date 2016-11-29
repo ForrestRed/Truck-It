@@ -361,5 +361,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
+    //gets cursor with all completed jobs for user
+    public Cursor getUserCompletedJobs(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +USERID+ " = " +id + "and " + STATUS + " = 2" ; //2 is status for completed
+        String where = null;
+        String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
+        //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);
+        Cursor c = db.rawQuery(query, null);
+
+        if(c != null) {
+            c.moveToFirst();
+        }
+        return c;
+    }
+    public void updateCompletedStatus(int tripID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(STATUS, 2);
+        long result = db.update(TABLE_NAME3, contentValues, "tripID = " + tripID, null);
+    }
 
   }
