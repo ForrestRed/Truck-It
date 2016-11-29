@@ -1,5 +1,6 @@
 package edu.shsu.truck_it;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.SimpleCursorAdapter;
 public class UsersCompletedJobListActivity extends AppCompatActivity {
 
     private ListView completedList;
+    public final static String Trip_ID_EXTRA = "edu.shsu.truck_it._ID3";
     DatabaseHelper myDB;
     String passedVar;
     private int userID;
@@ -29,7 +31,9 @@ public class UsersCompletedJobListActivity extends AppCompatActivity {
         completedList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-
+                Intent i = new Intent(getApplicationContext(), UserPaysDriverActivity.class);
+                i.putExtra(Trip_ID_EXTRA, String.valueOf(id));
+                startActivity(i);
             }
         });
     }

@@ -381,5 +381,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(STATUS, 2);
         long result = db.update(TABLE_NAME3, contentValues, "tripID = " + tripID, null);
     }
+    public double getCharge(int tripID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select tripID as _id, amount from "+TABLE_NAME3+ " where tripID = " +tripID;
+        Cursor c = db.rawQuery(query, null);
+
+
+        if(c != null) {
+            c.moveToFirst();
+        }
+        double charge = c.getDouble(1);
+        return charge;
+
+    }
+
 
   }
