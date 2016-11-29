@@ -75,7 +75,9 @@
         <activity
             android:name=".PaymentActivity"
             android:label="@string/title_activity_payment"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".UsersCompletedJobListActivity" />
+        <activity android:name=".UserPaysDriverActivity"></activity>
     </application>
 
 </manifest>

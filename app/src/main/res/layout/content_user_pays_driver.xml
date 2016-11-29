@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_payment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="edu.shsu.truck_it.PaymentActivity"
+    tools:showIn="@layout/activity_user_pays_driver"
+    android:background="@color/backgroudColor">
+
+    <TextView
+        android:layout_height="30dp"
+        android:id="@+id/textView5"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Driver Name"
+        android:layout_width="115dp"
+        android:textColor="@color/textColor"/>
+
+    <TextView
+        android:text="Vehicle Type"
+        android:layout_height="30dp"
+        android:id="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="115dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/textColor"/>
+
+    <TextView
+        android:text="Distance Traveled"
+        android:layout_height="30dp"
+        android:id="@+id/textView13"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="115dp"
+        android:textColor="@color/textColor"/>
+
+    <TextView
+        android:text="Total Charge"
+        android:layout_height="30dp"
+        android:id="@+id/textView14"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        android:layout_width="115dp"
+        android:textColor="@color/textColor"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_height="30dp"
+        android:id="@+id/payDriverName"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView5"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="200dp"
+        android:textColor="@color/textColor"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:id="@+id/payVehicle"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView7"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/payDriverName"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@color/textColor"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_height="30dp"
+        android:id="@+id/payDistance"
+        android:layout_width="200dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView13"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/payVehicle"
+        android:textColor="@color/textColor"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:id="@+id/payCharge"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView14"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/payDistance"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@color/textColor"/>
+
+    <Button
+        android:text="Pay Driver"
+        android:layout_width="340dp"
+        android:layout_height="44dp"
+        android:id="@+id/button7"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="88dp"
+        android:textColor="@color/textColor"
+        android:background="@color/buttonColor"/>
+
+</android.support.constraint.ConstraintLayout>
