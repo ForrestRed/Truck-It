@@ -394,6 +394,68 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return charge;
 
     }
+    public int getUserIdTTable(int tID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select tripID, userID from "+TABLE_NAME3;
+        Cursor c2 = db.rawQuery(query, null);
+
+        int a;
+        int b = -1;
+        if(c2.moveToFirst()){
+            do{
+                a = c2.getInt(0);
+
+                if(a == tID){
+                    b = c2.getInt(1);
+                    break;
+                }
+            }
+            while(c2.moveToNext());
+        }
+        return b;
+    }
+    public String getUserEmail(int uID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select userID, userEmail from " + TABLE_NAME1;
+        Cursor c = db.rawQuery(query, null);
+
+        int userID = uID;
+        int cursorID;
+        String userEmail = "";
+
+        if(c.moveToFirst()){
+            do{
+                cursorID = c.getInt(0);
+                if(userID == cursorID){
+                    userEmail = c.getString(1);
+                    break;
+                }
+            }
+            while(c.moveToNext());
+        }
+        return userEmail;
+    }
+    public String getDriverEmail(int dID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select driverID, driverEmail from " + TABLE_NAME2;
+        Cursor c = db.rawQuery(query, null);
+
+        int driverID = dID;
+        int cursorID;
+        String userEmail = "";
+
+        if(c.moveToFirst()){
+            do{
+                cursorID = c.getInt(0);
+                if(driverID == cursorID){
+                    userEmail = c.getString(1);
+                    break;
+                }
+            }
+            while(c.moveToNext());
+        }
+        return userEmail;
+    }
 
 
   }

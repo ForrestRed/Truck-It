@@ -14,7 +14,7 @@ import android.content.Intent;
 public class UserPaysDriverActivity extends AppCompatActivity {
     String passedVar, userEmail, driverEmail;
     DatabaseHelper myDB;
-    private int passedTripID;
+    private int passedTripID, userID, driverID;
     private TextView driverName, vehicleType, distanceTraveled, totalCharge;
     private Button payDriver;
     private double jobFinalCharge;
@@ -27,6 +27,13 @@ public class UserPaysDriverActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(this);
         passedVar = getIntent().getStringExtra(UsersCompletedJobListActivity.Trip_ID_EXTRA);
         passedTripID = Integer.parseInt(passedVar);
+
+        //get userEmail and driverEmail with passedTripID by getting userID and driverID then query for emails
+        driverID = myDB.getDriverIdTTable(passedTripID);
+        userID = myDB.getUserIdTTable(passedTripID);
+        driverEmail = myDB.getDriverEmail(driverID);
+        userEmail = myDB.getDriverEmail(userID);
+
 
         CompletedJob finishedJob = myDB.getCompletedJob(passedTripID);
         Driver finishedDriver = myDB.getDriver(finishedJob._driverID);
@@ -55,7 +62,7 @@ public class UserPaysDriverActivity extends AppCompatActivity {
 
                 String fromEmail = "teamharambeshsu@gmail.com";
                 String fromPassword = "Burris4317";
-                String toEmails = "stovalljr@gmail.com , teamharmbeshsu@gmail.com";
+                String toEmails = userEmail + "," + driverEmail;
 
                 List toEmailList = Arrays.asList(toEmails
                         .split("\\s*,\\s*"));
