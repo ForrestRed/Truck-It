@@ -1,5 +1,6 @@
 package edu.shsu.truck_it;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +16,7 @@ public class PaymentActivity extends AppCompatActivity {
     private int passedTripID;
     private double jobFinalCharge;
     private TextView driverName, vehicleType, distanceTraveled, totalCharge;
-    private Button chargeUser;
+    private Button chargeUser, logout;
 
 
     @Override
@@ -39,6 +40,7 @@ public class PaymentActivity extends AppCompatActivity {
         distanceTraveled = (TextView) findViewById(R.id.payDistance2);
         totalCharge = (TextView) findViewById(R.id.payCharge);
         chargeUser = (Button) findViewById(R.id.button7);
+        logout = (Button) findViewById(R.id.logoutButton2);
 
         driverName.setText(finishedDriver._name);
         vehicleType.setText(Integer.toString(finishedJob._vehicleType));
@@ -50,6 +52,14 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View v){
                 myDb.updateCompletedStatus(passedTripID);
                 Toast.makeText(PaymentActivity.this, "Customer is being charged.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getApplicationContext(), LogoutActivity.class);
+                startActivity(intent1);
             }
         });
 

@@ -25,7 +25,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
     public final static String ID_EXTRA = "edu.shsu.truck_it._ID";
     public final static String Driver_ID_EXTRA = "edu.shsu.truck_it._ID2";
     String passedVar = null;
-    private Button acceptedJobsButton;
+    private Button acceptedJobsButton, logoutBtn;
     private Driver driver;
     private String test;
 
@@ -37,6 +37,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
 
         listJobs = (ListView) findViewById(R.id.listJob);
         acceptedJobsButton = (Button) findViewById(R.id.acceptedJobsBtn);
+        logoutBtn = (Button) findViewById(R.id.logoutButton);
         //calls the internal database
         myDb = new DatabaseHelper(this);
 
@@ -88,6 +89,14 @@ public class DriverPicksClientActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), DriverReadyJobsActivity.class);
                 intent.putExtra(Driver_ID_EXTRA, passedVar);
                 startActivity(intent);
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getApplicationContext(), LogoutActivity.class);
+                startActivity(intent1);
             }
         });
 

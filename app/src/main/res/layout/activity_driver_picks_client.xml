@@ -27,4 +27,14 @@
         android:id="@+id/listJob"
         android:textColor="@color/textColor"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Logout"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/logoutButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/textColor"
+        android:background="@color/buttonColor"/>
 </RelativeLayout>
