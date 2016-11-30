@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 public class DriverStartJobActivity extends AppCompatActivity {
 
-    //still ghetto, being worked on
     private Button Submit_button;
     private Button To_Maps_Start_button;
     private Button To_Maps_End_button;

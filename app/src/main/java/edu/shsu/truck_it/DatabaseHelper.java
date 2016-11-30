@@ -191,10 +191,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return b;
     }
 
-    public Cursor getAllRows() {
+    public Cursor getAllRows(int truckType) {
         SQLiteDatabase db = this.getReadableDatabase();
         int notRequested = 0;
-        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +JOBPENDING+ " = " +notRequested;
+        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +JOBPENDING+ " = " +notRequested+ " and " +VEHICLE_TYPE+ " = " +truckType;
         String where = null;
         String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
         //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);
@@ -223,7 +223,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getDriverReadyJobs(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         int driverReady = 2;
-        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +DRIVERID+ " = " +id+ " and " +JOBPENDING+ " = " +driverReady;
+        int notStarted = 0;
+        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +DRIVERID+ " = " +id+ " and " +JOBPENDING+ " = " +driverReady+ " and " +STATUS+ " = " +notStarted;
         String where = null;
         String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
         //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);
@@ -364,7 +365,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //gets cursor with all completed jobs for user
     public Cursor getUserCompletedJobs(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +USERID+ " = " +id + "and " + STATUS + " = 2" ; //2 is status for completed
+        String query = "select tripID as _id, origin, destination, details from "+TABLE_NAME3+ " where " +USERID+ " = " +id + " and " + STATUS + " = 2" ; //2 is status for completed
         String where = null;
         String[] tableColumns = new String[] {"_id", "origin", "destination", "details"};
         //Cursor c = db.query(true, TABLE_NAME3, tableColumns, where, null, null, null, null, null);

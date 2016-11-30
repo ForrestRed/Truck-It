@@ -18,6 +18,10 @@ public class Driver_Requests_Job_Activity extends AppCompatActivity {
     private int passedID;
     private TextView pickupView, dropoffView, dateView, timeView, detailsView;
     DatabaseHelper myDb;
+    public final static String Driver_ID_EXTRA = "edu.shsu.truck_it._ID2";
+    public final static String Switch_String = "edu.shsu.truck_it._ID6";
+    private String testSwitch = "switch";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,8 @@ public class Driver_Requests_Job_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 ApplyForJob();
                 Intent intent = new Intent(getApplicationContext(), DriverPicksClientActivity.class);
+                intent.putExtra(Driver_ID_EXTRA, passedVar2);
+                intent.putExtra(Switch_String, testSwitch);
                 startActivity(intent);
             }
         });

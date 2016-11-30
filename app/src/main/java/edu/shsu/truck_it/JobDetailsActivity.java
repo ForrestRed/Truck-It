@@ -25,9 +25,7 @@ import java.util.Date;
 public class JobDetailsActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
-    private Button getPic;
     private Button submit;
-    private ImageView Picture;
     private EditText pickupLocation;
     private EditText dropOffLocation;
     private EditText date;
@@ -39,8 +37,7 @@ public class JobDetailsActivity extends AppCompatActivity {
     private int userID;
 
     private String pickupStr = null, dropOffStr = null, dateStr = null, timeStr = null, detailsStr = null, test =null;
-    private static final int PICK_IMAGE = 100;
-    Uri imageUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,15 +67,6 @@ public class JobDetailsActivity extends AppCompatActivity {
         int duration = Toast.LENGTH_SHORT;
         final Toast toast = Toast.makeText(con, toastText, duration);
 
-        getPic = (Button) findViewById(R.id.button4);
-        Picture = (ImageView) findViewById(R.id.imageView);
-
-        getPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,10 +88,6 @@ public class JobDetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void openGallery(){
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
-    }
 
     public void AddData() {
         boolean isInserted = myDb.insertData(userID, 0, pickupLocation.getText().toString(),
@@ -118,13 +102,6 @@ public class JobDetailsActivity extends AppCompatActivity {
             Toast.makeText(JobDetailsActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            imageUri = data.getData();
-            Picture.setImageURI(imageUri);
-        }
-    }
+
 
 }

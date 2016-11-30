@@ -10,21 +10,6 @@
     tools:showIn="@layout/activity_driver_start_job"
     android:background="@color/backgroudColor">
 
-    <TextView
-        android:text="Driver Job ID"
-        android:layout_width="352dp"
-        android:layout_height="36dp"
-        android:id="@+id/textView4"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        android:textSize="24sp" />
-
     <Button
         android:text="To Maps"
         android:layout_width="wrap_content"
@@ -34,13 +19,11 @@
         android:textColor="@color/textColor"
         android:layout_marginStart="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintBottom_toTopOf="@+id/toDropoffMapButton"
-        android:layout_marginBottom="8dp"
         app:layout_constraintRight_toLeftOf="@+id/startJobPickup"
         android:layout_marginEnd="8dp"
-        app:layout_constraintHorizontal_bias="0.15" />
+        app:layout_constraintHorizontal_bias="0.15"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:text="To Maps"
@@ -53,20 +36,20 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:background="@color/buttonColor"
         android:textColor="@color/textColor"
-        app:layout_constraintBottom_toTopOf="@+id/imageView7"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintHorizontal_bias="0.15" />
+        app:layout_constraintHorizontal_bias="0.15"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/toPickupMapButton" />
 
     <TextView
         android:text="Pickup Address"
         android:layout_width="220dp"
         android:id="@+id/startJobPickup"
         android:textColor="@color/textColor"
-        android:layout_height="44dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="48dp" />
 
     <TextView
         android:text="Dropoff Address"
@@ -75,38 +58,26 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/startJobPickup"
         android:textColor="@color/textColor"
-        android:layout_height="44dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ImageView
-        android:layout_height="122dp"
-        app:srcCompat="@color/buttonColor"
-        android:id="@+id/imageView7"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/startJobDropOff"
-        android:layout_width="340dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:textColor="@color/textColor"/>
+        android:layout_height="48dp" />
 
     <TextView
         android:text="TextView"
         android:id="@+id/startJobDetails"
-        android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_width="340dp"
-        android:textColor="@color/textColor"/>
+        android:textColor="@color/textColor"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/startJobDropOff"
+        android:background="@color/buttonColor"
+        android:layout_height="200dp" />
 
     <Button
-        android:text="Finished"
+        android:text="Job Finished"
         android:layout_width="340dp"
         android:layout_height="48dp"
         android:id="@+id/CurrentJobFinishedButton"
@@ -119,5 +90,6 @@
         android:background="@color/buttonColor"
         android:textColor="@color/textColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.42000002" />
 </android.support.constraint.ConstraintLayout>

@@ -26,6 +26,8 @@ public class DriverPicksClientActivity extends AppCompatActivity {
     public final static String Driver_ID_EXTRA = "edu.shsu.truck_it._ID2";
     String passedVar = null;
     private Button acceptedJobsButton;
+    private Driver driver;
+    private String test;
 
 
     @Override
@@ -37,8 +39,17 @@ public class DriverPicksClientActivity extends AppCompatActivity {
         acceptedJobsButton = (Button) findViewById(R.id.acceptedJobsBtn);
         //calls the internal database
         myDb = new DatabaseHelper(this);
+
+        test = getIntent().getStringExtra(Driver_Requests_Job_Activity.Switch_String);
+
+        if(test != null){
+            passedVar = getIntent().getStringExtra((Driver_Requests_Job_Activity.Driver_ID_EXTRA));
+        }
+        else{
+            passedVar = getIntent().getStringExtra(MainActivity.Driver_ID_EXTRA);
+        }
+        driver = myDb.getDriver(Integer.parseInt(passedVar));
         populateListView();
-        passedVar = getIntent().getStringExtra(MainActivity.Driver_ID_EXTRA);
         String[] tests = new String[]{
                 "test 1",
                 "TEST 2",
@@ -75,6 +86,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DriverReadyJobsActivity.class);
+                intent.putExtra(Driver_ID_EXTRA, passedVar);
                 startActivity(intent);
             }
         });
@@ -82,7 +94,7 @@ public class DriverPicksClientActivity extends AppCompatActivity {
     }
 
     private void populateListView(){
-        Cursor cursor = myDb.getAllRows();
+        Cursor cursor = myDb.getAllRows(driver._vehicleType);
         String[] fromFieldNames = new String[] {DatabaseHelper.ORIGIN, DatabaseHelper.DESTINATION, DatabaseHelper.DETAILS};
         int[] toViewIDs = new int[] {R.id.origin, R.id.destination, R.id.details};
         SimpleCursorAdapter myCursorAdaptor;

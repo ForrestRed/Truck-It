@@ -16,6 +16,7 @@ public class DriverReadyJobsActivity extends AppCompatActivity {
     public final static String Trip_ID_EXTRA = "edu.shsu.truck_it._ID3";
     DatabaseHelper myDb;
     ListView driverReadyListView;
+    private String passedVar;
 
 
     @Override
@@ -26,6 +27,7 @@ public class DriverReadyJobsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         myDb = new DatabaseHelper(this);
+        passedVar = getIntent().getStringExtra(DriverPicksClientActivity.Driver_ID_EXTRA);
         driverReadyListView = (ListView) findViewById(R.id.dReadyJobslv);
         populateListView();
 
@@ -43,7 +45,7 @@ public class DriverReadyJobsActivity extends AppCompatActivity {
     }
 
     private void populateListView(){
-        Cursor cursor = myDb.getDriverReadyJobs(1);
+        Cursor cursor = myDb.getDriverReadyJobs(Integer.parseInt(passedVar));
         String[] fromFieldNames = new String[] {DatabaseHelper.ORIGIN, DatabaseHelper.DESTINATION, DatabaseHelper.DETAILS};
         int[] toViewIDs = new int[] {R.id.origin, R.id.destination, R.id.details};
         SimpleCursorAdapter myCursorAdaptor;
