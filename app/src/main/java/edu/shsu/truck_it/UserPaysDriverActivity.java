@@ -66,8 +66,8 @@ public class UserPaysDriverActivity extends AppCompatActivity {
                 new SendMailTask(UserPaysDriverActivity.this).execute(fromEmail,
                         fromPassword, toEmailList, emailSubject, emailBody);
 
-                //Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                //startActivity(i);
+                Intent i = new Intent(getApplicationContext(), LogoutActivity.class);
+                startActivity(i);
                 ////////////////////////////////////////////////////////////////////////////////
             }
         });
