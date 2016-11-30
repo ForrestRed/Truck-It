@@ -4,16 +4,13 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_jobs"
-            android:icon="@drawable/ic_menu_camera"
             android:title="My Job Requests" />
         <item
             android:id="@+id/nav_completed"
-            android:icon="@drawable/ic_menu_camera"
             android:title="Completed Jobs" />
 
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_share"
             android:title="Logout" />
 
     </group>
