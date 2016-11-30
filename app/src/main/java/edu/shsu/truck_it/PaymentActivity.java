@@ -1,8 +1,6 @@
 package edu.shsu.truck_it;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -36,9 +34,9 @@ public class PaymentActivity extends AppCompatActivity {
 
         jobFinalCharge = Payment(finishedJob._distance, finishedJob._vehicleType);
 
-        driverName = (TextView) findViewById(R.id.payDriverName);
-        vehicleType = (TextView) findViewById(R.id.payVehicle);
-        distanceTraveled = (TextView) findViewById(R.id.payDistance);
+        driverName = (TextView) findViewById(R.id.payDriverName2);
+        vehicleType = (TextView) findViewById(R.id.payVehicle2);
+        distanceTraveled = (TextView) findViewById(R.id.payDistance2);
         totalCharge = (TextView) findViewById(R.id.payCharge);
         chargeUser = (Button) findViewById(R.id.button7);
 
