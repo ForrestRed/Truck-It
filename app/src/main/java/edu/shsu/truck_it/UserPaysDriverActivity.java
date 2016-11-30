@@ -32,7 +32,7 @@ public class UserPaysDriverActivity extends AppCompatActivity {
         driverID = myDB.getDriverIdTTable(passedTripID);
         userID = myDB.getUserIdTTable(passedTripID);
         driverEmail = myDB.getDriverEmail(driverID);
-        userEmail = myDB.getDriverEmail(userID);
+        userEmail = myDB.getUserEmail(userID);
 
 
         CompletedJob finishedJob = myDB.getCompletedJob(passedTripID);
@@ -69,7 +69,7 @@ public class UserPaysDriverActivity extends AppCompatActivity {
                 Log.i("SendMailActivity", "To List: " + toEmailList);
 
                 String emailSubject = "donotreply harambe job confirmation";
-                String emailBody = "Thank you for using TruckIt! You have been charged $" + totalCharge + ".";
+                String emailBody = "Thank you for using TruckIt! You have been charged $" + jobFinalCharge + ".";
                 new SendMailTask(UserPaysDriverActivity.this).execute(fromEmail,
                         fromPassword, toEmailList, emailSubject, emailBody);
 
@@ -84,7 +84,7 @@ public class UserPaysDriverActivity extends AppCompatActivity {
                 Log.i("SendMailActivity", "To List: " + toEmailList2);
 
                 String emailSubject2 = "donotreply harambe job confirmation";
-                String emailBody2 = "Thank you for using TruckIt! You have completed your job and $" + totalCharge + " will be transferred to your account momentarily.";
+                String emailBody2 = "Thank you for using TruckIt! You have completed your job and $" + jobFinalCharge + " will be transferred to your account momentarily.";
                 new SendMailTask(UserPaysDriverActivity.this).execute(fromEmail2,
                         fromPassword2, toEmailList2, emailSubject2, emailBody2);
 

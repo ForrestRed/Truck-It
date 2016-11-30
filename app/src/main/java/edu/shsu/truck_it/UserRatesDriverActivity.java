@@ -1,4 +1,4 @@
-package edu.shsu.truck_it;
+/*package edu.shsu.truck_it;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,4 +57,4 @@ public class UserRatesDriverActivity extends AppCompatActivity {
 
     }
   
-}
+}*/
