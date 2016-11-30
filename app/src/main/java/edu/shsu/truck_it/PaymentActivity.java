@@ -34,6 +34,7 @@ public class PaymentActivity extends AppCompatActivity {
         Driver finishedDriver = myDb.getDriver(finishedJob._driverID);
 
         jobFinalCharge = Payment(finishedJob._distance, finishedJob._vehicleType);
+        myDb.updateCharge(passedTripID, jobFinalCharge);
 
         driverName = (TextView) findViewById(R.id.payDriverName2);
         vehicleType = (TextView) findViewById(R.id.payVehicle2);

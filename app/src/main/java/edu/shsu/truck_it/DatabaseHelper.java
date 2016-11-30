@@ -457,6 +457,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return userEmail;
     }
+    public void updateCharge(int tripID, double charge){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(CHARGE, charge);
+        long result = db.update(TABLE_NAME3, cv, "tripID = " + tripID, null);
+    }
 
 
   }
