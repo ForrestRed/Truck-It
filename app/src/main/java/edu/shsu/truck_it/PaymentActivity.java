@@ -44,7 +44,13 @@ public class PaymentActivity extends AppCompatActivity {
         logout = (Button) findViewById(R.id.logoutButton2);
 
         driverName.setText(finishedDriver._name);
-        vehicleType.setText(Integer.toString(finishedJob._vehicleType));
+        if(finishedJob._vehicleType == 1)
+            vehicleType.setText("Small Truck");
+        else if(finishedJob._vehicleType == 2)
+            vehicleType.setText("Large Truck");
+        else if(finishedJob._vehicleType == 3)
+            vehicleType.setText("Cargo Van");
+        //vehicleType.setText(Integer.toString(finishedJob._vehicleType));
         distanceTraveled.setText(String.valueOf(finishedJob._distance));
         totalCharge.setText(String.valueOf(jobFinalCharge));
 

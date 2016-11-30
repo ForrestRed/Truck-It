@@ -31,7 +31,7 @@ public class AcceptOrDenyDriverActivity extends AppCompatActivity {
 
         driverName = (TextView) findViewById(R.id.dName);
         driverVehicle = (TextView) findViewById(R.id.dVehicle);
-        driverPhone = (TextView) findViewById(R.id.dPhone);
+        //driverPhone = (TextView) findViewById(R.id.dPhone);
         driverRating = (RatingBar) findViewById(R.id.ratingBar2);
         acceptButton = (Button) findViewById(R.id.acceptBtn);
 
@@ -42,8 +42,14 @@ public class AcceptOrDenyDriverActivity extends AppCompatActivity {
         final Driver driver = myDb.getDriver(foundDriverID);
 
         driverName.setText(driver._name);
-        driverVehicle.setText(String.valueOf(driver._vehicleType));
-        driverPhone.setText(String.valueOf(driver._phone));
+        //driverVehicle.setText(String.valueOf(driver._vehicleType));
+        if(driver._vehicleType == 1)
+            driverVehicle.setText("Small Truck");
+        else if(driver._vehicleType == 2)
+            driverVehicle.setText("Large Truck");
+        else if(driver._vehicleType == 3)
+            driverVehicle.setText("Cargo Van");
+        //driverPhone.setText(String.valueOf(driver._phone));
         driverRating.setRating(driver._rating);
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
