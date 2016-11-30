@@ -62,7 +62,7 @@ public class UserPaysDriverActivity extends AppCompatActivity {
 
                 String fromEmail = "teamharambeshsu@gmail.com";
                 String fromPassword = "Burris4317";
-                String toEmails = userEmail + "," + driverEmail;
+                String toEmails = userEmail;
 
                 List toEmailList = Arrays.asList(toEmails
                         .split("\\s*,\\s*"));
@@ -72,6 +72,22 @@ public class UserPaysDriverActivity extends AppCompatActivity {
                 String emailBody = "Thank you for using TruckIt!";
                 new SendMailTask(UserPaysDriverActivity.this).execute(fromEmail,
                         fromPassword, toEmailList, emailSubject, emailBody);
+
+                Log.i("SendMailActivity", "Send Button Clicked.");
+
+                String fromEmail2 = "teamharambeshsu@gmail.com";
+                String fromPassword2 = "Burris4317";
+                String toEmails2 = driverEmail;
+
+                List toEmailList2 = Arrays.asList(toEmails2
+                        .split("\\s*,\\s*"));
+                Log.i("SendMailActivity", "To List: " + toEmailList2);
+
+                String emailSubject2 = "donotreply harambe job confirmation";
+                String emailBody2 = "Thank you for using TruckIt!";
+                new SendMailTask(UserPaysDriverActivity.this).execute(fromEmail2,
+                        fromPassword2, toEmailList2, emailSubject2, emailBody2);
+
 
                 Intent i = new Intent(getApplicationContext(), LogoutActivity.class);
                 startActivity(i);
